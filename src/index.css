@@ -13,9 +13,14 @@
      App.css   — 앱 레벨 레이아웃 */
 
 /* 자주 쓰는 색을 변수로 모아뒀습니다. 색을 바꾸고 싶을 때 여기 한 곳만 고치면 됩니다. */
+/* style.css 맨 위에 삽입 */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap');
+
+
+
 :root {
   --brand: #871ae0 !important;
-  --bg: #355dad;
+  --bg: #0d2658;
   --text: #1f1f1f;
   --muted: #8a8f98;
   --line: #eceef1;
@@ -24,7 +29,7 @@
 body {
   margin: 0;
   background: var(--bg);
-  font-family: system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: system-ui, -apple-system, "Do Hyeon", "Jua", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: var(--text);
 }
 
@@ -37,6 +42,7 @@ body {
 
 h1 {
   color: var(--brand);
+  font-family: "Jua", sans-serif;
   font-size: 20px;
   margin: 0 0 20px;
 }
@@ -61,11 +67,13 @@ header h1 {
 
 .balance {
   font-size: 22px;
+  font-family: "Do Hyeon", sans-serif;
   font-weight: 700;
 }
 
 .muted {
   color: var(--muted);
+  font-family: "Do Hyeon", sans-serif;
   font-size: 13px;
 }
 
@@ -81,6 +89,7 @@ header h1 {
   display: inline-block;
   color: #ffffff;
   font-size: 11px;
+  font-family: "Do Hyeon", sans-serif;
   padding: 2px 8px;
   border-radius: 999px;
 }
@@ -92,6 +101,7 @@ header h1 {
 
 .panel h2 {
   font-size: 14px;
+   font-family: "Do Hyeon", sans-serif;
   color: #5a6069;
   margin: 0 0 8px;
 }
@@ -107,6 +117,7 @@ header h1 {
 
 .total .muted {
   color: rgba(255, 255, 255, 0.7);
+  font-family: "Do Hyeon", sans-serif;
   font-size: 12px;
 }
 
@@ -159,6 +170,7 @@ header h1 {
   padding: 10px 14px;
   cursor: pointer;
   font-size: 14px;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .btn:disabled {
@@ -188,6 +200,7 @@ header h1 {
   border-radius: 999px;
   padding: 6px 12px;
   font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
   cursor: pointer;
   color: var(--muted);
 }
@@ -202,6 +215,7 @@ header h1 {
 /* 필터링된 거래 건수와 합계를 보여주는 요약 줄 */
 .summary {
   font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
   color: var(--muted);
   margin-bottom: 8px;
 }
@@ -214,6 +228,7 @@ header h1 {
   border-radius: 999px;
   padding: 4px 12px;
   font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
   cursor: pointer;
   margin-right: 6px;
 }
@@ -222,4 +237,71 @@ header h1 {
   background: var(--brand);
   color: #ffffff;
   border-color: var(--brand);
+}
+
+/* 이체 영역: 받는 계좌, 보낼 금액, 메모 입력 폼 */
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 이체 폼의 입력 한 묶음 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 이체 폼의 항목 이름 */
+.field label {
+  color: #5a6069;
+  font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 600;
+}
+
+/* 받는 계좌, 보낼 금액, 메모 입력창 */
+.field input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-family: "Do Hyeon", sans-serif;
+  color: var(--text);
+  background: #ffffff;
+}
+
+/* 입력창에 포커스가 갔을 때 */
+.field input:focus {
+  outline: 2px solid rgba(135, 26, 224, 0.2);
+  border-color: var(--brand);
+}
+
+/* 이체 가능 금액 부족, 입력 누락 등의 오류 문구 */
+.error {
+  margin: 0;
+  color: #d93025;
+  font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
+}
+
+/* 계좌 카드 안의 1만원 입금 버튼 */
+.deposit-btn {
+  margin-top: 12px;
+}
+
+/* 이체 폼의 이체 실행 버튼 */
+.transfer-submit {
+  align-self: flex-start;
+}
+
+/* 계좌번호 보기, 금액 보기 토글 버튼 */
+.toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-bottom: 12px;
 }

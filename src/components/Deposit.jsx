@@ -23,9 +23,13 @@ function Deposit({ accountId, balance, status, setAccounts, setTransactions }) {
   };
 
   return (
-    <button onClick={handleDeposit} disabled={status !== "정상"}>
-      1만원 입금
-    </button>
+    <button
+  className="btn deposit-btn"
+  onClick={handleDeposit}
+  disabled={status !== "정상"}
+>
+  1만원 입금
+</button>
   );
 }
 

@@ -10,7 +10,7 @@ import { transactions as initialTransactions } from './data/mockData.js'
 import { useState } from "react"; //쓸때마다 불러야함.
 //import TransactionRow from './components/TransactionRow.jsx'
 import ExchangeRate from './components/ExchangeRate.jsx'
-import { formatWon } from './utils/format.js'
+import { formatWon, formatWonMasked } from './utils/format.js'
 import TransactionList from './components/TransactionList.jsx'
 import { UserProvider } from './contexts/UserContext.jsx'
 import TransferForm from './components/TransferForm.jsx'
@@ -91,15 +91,13 @@ function App() {
   // flag 변수를 사용할 때는 default 값을 false로 만들고 시작하는 로직을 권장 
   const [showFullNo, setShowFullNo] = useState(false)
   
+  const [showAmount, setShowAmount] = useState(false)
 
-
-const [showAmount, setShowAmount] = useState(false)
-
-// 최근 거래 목록 필터: "전체" | "입금" | "출금"
-const [filter, setFilter] = useState("전체");
-const visibleTransactions = filter === "전체"
-  ? transactions //필터링 안함
-  : transactions.filter((tx) => tx.txType === filter); //입금 출금만 걸러내기 위함
+  // 최근 거래 목록 필터: "전체" | "입금" | "출금"
+  const [filter, setFilter] = useState("전체");
+  const visibleTransactions = filter === "전체"
+    ? transactions //필터링 안함
+    : transactions.filter((tx) => tx.txType === filter); //입금 출금만 걸러내기 위함
 
   // XML에서는 여는 꺽쇠 안의 태그가 무엇이든 될 수 있기 때문에 <이름>김연지 </이름>
   // JSX 가 소문자 태그는 HTML, 대문자로 시작하는 태그는 컴포넌트로 인식
@@ -108,16 +106,24 @@ const visibleTransactions = filter === "전체"
 
   return (
     <>
-    <UserProvider user={{ name: "김연지", grade: "우수" }}>
+    <UserProvider user={{ name: "이정민", grade: "우수" }}>
   <Header />
 
-  <button onClick={() => setShowFullNo(!showFullNo)}>
-    {showFullNo ? "계좌번호 숨기기" : "계좌번호 보기"}
-  </button>
+  <div className="toolbar">
+    <button
+      className="btn btn-ghost"
+      onClick={() => setShowFullNo(!showFullNo)}
+    >
+      {showFullNo ? "계좌번호 숨기기" : "계좌번호 보기"}
+    </button>
 
-  <button onClick={() => setShowAmount(!showAmount)}>
-    {showAmount ? "금액 숨기기" : "금액 보기"}
-  </button>
+    <button
+      className="btn btn-ghost"
+      onClick={() => setShowAmount(!showAmount)}
+    >
+      {showAmount ? "금액 숨기기" : "금액 보기"}
+    </button>
+  </div>
 
   <Clock /> {/* class는 Js의 예약어이므로 JSX에서는 className으로 대신 사용합니다. */}
     {/* 추가 */}
@@ -128,7 +134,11 @@ const visibleTransactions = filter === "전체"
 
   <div className="total">
     <p>총 자산</p>
-    <p>{formatWon(totalBalance)}</p>
+
+    {/* 금액 보기 상태일 때는 실제 금액, 숨기기 상태일 때는 마스킹 금액 표시 */}
+    <p className="balance">
+      {formatWonMasked(totalBalance, !showAmount)}
+    </p>
   </div>
 
   <Panel title="내 계좌">

@@ -1,8 +1,12 @@
 /* 우리WON뱅킹 미니 - 공통 스타일 */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap');
+
+
+
 body {
   margin: 0;
   background: #e1e3e6;
-  font-family: system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: system-ui, -apple-system, "Do Hyeon", "Jua", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: #1a1a1a;
 }
 
@@ -16,6 +20,7 @@ body {
 h1 {
   color: #1668dc;
   font-size: 20px;
+  font-family: "Do Hyeon", sans-serif;
   margin: 0 0 20px;
 }
 
@@ -30,9 +35,11 @@ h1 {
 .balance {
   font-size: 24px;
   font-weight: 700;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .muted {
   color: #8b8f98;
   font-size: 13px;
+  font-family: "Do Hyeon", sans-serif;
 }

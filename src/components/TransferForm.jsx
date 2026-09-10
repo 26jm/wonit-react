@@ -61,46 +61,49 @@ function TransferForm({ fromAccount, onTransfer }) {
     setSending(false)
   }
 
+  const isSubmitDisabled = sending || errorMessage !== ""
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="transfer-form">
       <div className="field">
-        <label>받는 계좌</label>
+        <label htmlFor="toAccount">받는 계좌</label>
         <input
-          type="text"
+          id="toAccount"
           name="toAccount"
           value={form.toAccount}
           onChange={handleChange}
-          placeholder="계좌번호 또는 이름"
+          placeholder="계좌번호 입력"
         />
       </div>
 
       <div className="field">
-        <label>보낼 금액</label>
+        <label htmlFor="amount">이체 금액</label>
         <input
-          type="text"
+          id="amount"
           name="amount"
-          value={form.amount === "" ? "" : Number(form.amount).toLocaleString("ko-KR")}
-          onChange={handleChange}
-          placeholder="0"
+          type="text"
           inputMode="numeric"
+          value={form.amount}
+          onChange={handleChange}
+          placeholder="금액 입력"
         />
       </div>
 
       <div className="field">
-        <label>메모 (선택)</label>
+        <label htmlFor="memo">메모</label>
         <input
-          type="text"
+          id="memo"
           name="memo"
           value={form.memo}
           onChange={handleChange}
-          placeholder="예) 용돈"
+          placeholder="메모를 입력하세요"
         />
       </div>
 
-      {touched && errorMessage !== "" && <p className="error">{errorMessage}</p>}
+      {touched && errorMessage && <p className="error">{errorMessage}</p>}
 
-      <button className="btn" type="submit" disabled={sending || errorMessage !== ""}>
-        {sending ? "이체 중..." : "이체"}
+      <button type="submit" disabled={isSubmitDisabled}>
+        {sending ? "이체 중..." : "이체하기"}
       </button>
     </form>
   )
